@@ -24,9 +24,6 @@ var inputValueEl = document.querySelector('.inputValue');
  var humidity3El=document.querySelector('.humidity3');
  var humidity4El=document.querySelector('.humidity4');
  var humidity5El=document.querySelector('.humidity5');
-
-
-
  
 
 function buttonCall() {
@@ -64,11 +61,11 @@ function fiveDay() {
     })
     .then((data) => {
         console.log(data)
-        var date1=data['list'][0]['dt_txt'];
-        var date2=data['list'][1]['dt_txt'];
-        var date3=data['list'][2]['dt_txt'];
-        var date4=data['list'][3]['dt_txt'];
-        var date5=data['list'][4]['dt_txt'];
+        var date1=moment(data.list[0].dt_txt).format("MM/ DD")
+        var date2=moment(data.list[1].dt_txt).format("MM/ DD")
+        var date3=moment(data.list[9].dt_txt).format("MM/ DD")
+        var date4=moment(data.list[17].dt_txt).format("MM/ DD")
+        var date5=moment(data.list[25].dt_txt).format("MM/ DD")
         
         var temp1=data['list'][0]['main']['temp'];
         var temp2=data['list'][1]['main']['temp'];
@@ -88,16 +85,16 @@ function fiveDay() {
         date4El.innerHTML = date4;
         date5El.innerHTML = date5;
 
-        temp1El.innerHTML = temp1 + 'F';
-        temp2El.innerHTML = temp2 + 'F';
-        temp3El.innerHTML = temp3 + 'F';
-        temp4El.innerHTML = temp4 + 'F';
-        temp5El.innerHTML = temp5 + 'F';
+        temp1El.innerHTML = 'Temp: ' + temp1 + 'F';
+        temp2El.innerHTML = 'Temp: ' + temp2 + 'F';
+        temp3El.innerHTML = 'Temp: ' + temp3 + 'F';
+        temp4El.innerHTML = 'Temp: ' + temp4 + 'F';
+        temp5El.innerHTML = 'Temp: ' + temp5 + 'F';
 
-        humidity1El.innerHTML = humi1;
-        humidity2El.innerHTML = humi2;
-        humidity3El.innerHTML = humi3;
-        humidity4El.innerHTML = humi4;
-        humidity5El.innerHTML = humi5;
+        humidity1El.innerHTML = 'Humidity: ' +humi1 + '%';
+        humidity2El.innerHTML = 'Humidity: ' +humi2 + '%';
+        humidity3El.innerHTML = 'Humidity: ' +humi3 + '%';
+        humidity4El.innerHTML = 'Humidity: ' +humi4 + '%';
+        humidity5El.innerHTML = 'Humidity: ' +humi5 + '%';
     })
 };
