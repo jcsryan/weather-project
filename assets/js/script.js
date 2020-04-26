@@ -1,7 +1,7 @@
 var buttonEl = document.querySelector('.button');
 var inputValueEl = document.querySelector('.inputValue');
  var nameEl= document.querySelector('.name');
- //var iconEl=document.querySelector('.icon');
+ const iconEl = document.getElementById("icon");
  var descriptionEl = document.querySelector('.description');
  var tempEl= document.querySelector('.temp');
  var humidityEl= document.querySelector('.humidity');
@@ -12,6 +12,13 @@ var inputValueEl = document.querySelector('.inputValue');
  var date3El=document.querySelector('.date3');
  var date4El=document.querySelector('.date4');
  var date5El=document.querySelector('.date5');
+
+ const image1=document.getElementById('wicon1');
+ const image2=document.getElementById('wicon2');
+ const image3=document.getElementById('wicon3');
+ const image4=document.getElementById('wicon4');
+ const image5=document.getElementById('wicon5');
+
 
  var temp1El=document.querySelector('.temp1');
  var temp2El=document.querySelector('.temp2');
@@ -40,12 +47,12 @@ function buttonCall() {
       var humidityValue = data['main']['humidity'];
       var windspeedValue= data['wind']['speed'];
       var iconValue = data['weather'][0]['icon'];
-     // var iconURL = "http://openweathermap.org/img/wn/" + iconValue + '.png';
-
+ 
+      
+    
         nameEl.innerHTML = nameValue;
         descriptionEl.innerHTML = 'Description: ' + desValue;
-        //iconEl.innerHTML = iconValue;
-        //$('#wicon').attr('src', iconURL);
+        iconEl.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue + "@2x.png");
         tempEl.innerHTML = 'Temp: ' + tempValue + 'F';
         humidityEl.innerHTML = 'Humidity: ' + humidityValue;
         windspeedEl.innerHTML = 'Windspeed: ' + windspeedValue;
@@ -61,11 +68,18 @@ function fiveDay() {
     })
     .then((data) => {
         console.log(data)
-        var date1=moment(data.list[0].dt_txt).format("MM/ DD")
+
+       var date1=moment(data.list[0].dt_txt).format("MM/ DD")
         var date2=moment(data.list[1].dt_txt).format("MM/ DD")
         var date3=moment(data.list[9].dt_txt).format("MM/ DD")
         var date4=moment(data.list[17].dt_txt).format("MM/ DD")
         var date5=moment(data.list[25].dt_txt).format("MM/ DD")
+
+        var iconValue1 = data['list'][0]['weather'][0]['icon']
+        var iconValue2 = data['list'][1]['weather'][0]['icon']
+        var iconValue3 = data['list'][9]['weather'][0]['icon']
+        var iconValue4 = data['list'][17]['weather'][0]['icon']
+        var iconValue5 = data['list'][25]['weather'][0]['icon']
         
         var temp1=data['list'][0]['main']['temp'];
         var temp2=data['list'][1]['main']['temp'];
@@ -85,6 +99,12 @@ function fiveDay() {
         date4El.innerHTML = date4;
         date5El.innerHTML = date5;
 
+        image1.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue1 + "@2x.png");
+        image2.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue2 + "@2x.png");
+        image3.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue3 + "@2x.png");
+        image4.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue4 + "@2x.png");
+        image5.setAttribute("src","https://openweathermap.org/img/wn/" + iconValue5 + "@2x.png");
+
         temp1El.innerHTML = 'Temp: ' + temp1 + 'F';
         temp2El.innerHTML = 'Temp: ' + temp2 + 'F';
         temp3El.innerHTML = 'Temp: ' + temp3 + 'F';
@@ -95,6 +115,38 @@ function fiveDay() {
         humidity2El.innerHTML = 'Humidity: ' +humi2 + '%';
         humidity3El.innerHTML = 'Humidity: ' +humi3 + '%';
         humidity4El.innerHTML = 'Humidity: ' +humi4 + '%';
-        humidity5El.innerHTML = 'Humidity: ' +humi5 + '%';
     })
 };
+
+const myForm = document.getElementById("todo");
+const list = document.querySelector(".list-items");
+
+
+function addTodo(e) {
+ // e.preventDefault();
+  const userInput = document.querySelector(".userAdd").value;
+  const userListItem = document.createElement("li");
+  userListItem.appendChild(document.createTextNode(userInput));
+  list.appendChild(userListItem);
+  const myArray = map(listItems, getText);
+  localStorage.setItem('userListItem', JSON.stringify(myArray));
+}
+
+const listItems = document.getElementsByTagName('li');
+
+
+function map(arrayLike, fn) {
+    var ret = [], i = -1, len = arrayLike.length;
+    while (++i < len) ret[i] = fn(arrayLike[i]);
+    return ret;
+}
+
+
+function getText(node) {
+    if (node.nodeType === 3) return node.data;
+    var txt = '';
+    if (node = node.firstChild) do {
+        txt += getText(node);
+    } while (node = node.nextSibling);
+    return txt;
+}

@@ -26,14 +26,16 @@
   <div class="row bg-secondary">
     <div class="col input">
   <label class="form-label" for="username"></label>
-  <input type="text" class="inputValue" id="city-selector" placeholder="Enter a city"/>
-  <button type="button submit" value="Submit" class="btn btn-info" onclick="buttonCall(); fiveDay()">Get City</button>
+  <input type="text submit" class="inputValue userAdd" id="city-selector item" placeholder="Enter a city" required/>
+  <button type="button submit" value="Submit" class="btn btn-info" onclick="buttonCall(); fiveDay(); addTodo()">Get City</button>
     </div>
   </div>
  
   <div class="row">
-  <div class="col-3 bg-secondary">
-    <p> cities</p>
+  <div class="col-3 bg-secondary" id="item">
+    <h2> cities</h2>
+    <ul class="list-items">
+    </ul>
   </div>
  
   <div class="row col-9" id="forcast-columns">
@@ -41,7 +43,7 @@
     <div class="display row" id="daily-forcast">
       <h1 class="name col-12"></h1>
       <p class="description col-6"></p>
-   <!-- <img id="wicon" src="" class="icon col-6" alt="weather icon"></img> -->
+   <img id="icon" src="" class="icon col-6" alt="weather icon"></img>
       <p class="temp col-6"></p>
       <p class="humidity col-6"></p>
       <p class="windspeed col-6"></p>
@@ -54,35 +56,35 @@
     
     <div class="col border border-info" id="first">
       <h3 class='date1'></h3>
-      <img class="wicon1">
+      <img id="wicon1">
       <p class="temp1"></p>
       <p class="humidity1"></p>
     </div>
 
     <div class="col border border-info" id="second">
       <h3 class='date2'></h3>
-      <img class="wicon2">
+      <img id="wicon2">
       <p class="temp2"></p>
       <p class="humidity2"></p>
     </div>
 
     <div class="col border border-info" id="third">
       <h3 class='date3'></h3>
-      <img class="wicon3">
+      <img id="wicon3">
       <p class="temp3"></p>
       <p class="humidity3"></p>
     </div>
 
     <div class="col border border-info" id="fourth">
       <h3 class='date4'></h3>
-      <img class="wicon4">
+      <img id="wicon4">
       <p class="temp4"></p>
       <p class="humidity4"></p>
     </div>
 
     <div class="col border border-info" id="fifth">
       <h3 class='date5'></h3>
-      <img class="wicon5">
+      <img id="wicon5">
       <p class="temp5"></p>
       <p class="humidity5"></p>
     </div>
