@@ -35,7 +35,7 @@ var inputValueEl = document.querySelector('.inputValue');
 
 function buttonCall() {
     
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='+ inputValueEl.value + '&appid=9258310cbe3ce12fc60025bf8d0e566b' + '&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+ inputValueEl.value + '&appid=9258310cbe3ce12fc60025bf8d0e566b' + '&units=imperial')
     .then((response) => {
       return response.json();
     })
@@ -62,7 +62,7 @@ function buttonCall() {
 };
 
 function fiveDay() {
-    fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + inputValueEl.value + '&appid=9258310cbe3ce12fc60025bf8d0e566b' + '&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inputValueEl.value + '&appid=9258310cbe3ce12fc60025bf8d0e566b' + '&units=imperial')
     .then((response) => {
         return response.json();
     })
